@@ -1,0 +1,44 @@
+<h1>Burger logger, logging your sadness, one bite at a time :)</h1>
+<br>
+
+
+                <h2>Eat this, Fool!</h2>
+
+                <ul>
+                    {{#each burgers}} {{#unless this.eaten}}
+                    <li>
+                        {{this.burger_name}}
+
+                        <form action="/{{this.id}}" method="POST">
+                            <input type="hidden" name="eaten">
+                           <button type="submit" class="btn btn-outline-primary">eat</button>
+                        </form>
+
+                    </li>
+                    {{/unless}} {{/each}}
+                </ul>
+   
+
+                <h2> Burgers you've eaten, no judgement... </h2>
+
+                <ul>
+                    {{#each burgers}} {{#if this.eaten}}
+                    <li>
+                        {{this.burger_name}}
+
+                         <form action="/remove/{{this.id}}" method="POST">
+                            <input type="hidden" name="eaten">
+                            <button type="submit" class="btn btn-outline-danger">remove</button>
+                        </form>
+                    </li>
+                    {{/if}} {{/each}}
+   
+     <h3>Add a Burger</h3>
+
+    <form class="create-update-form" method="POST">
+        <div class="form-group">
+            <textarea name="burger_name" rows="2" cols="50"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">add your burger</button>
+    </form>
+</div>
